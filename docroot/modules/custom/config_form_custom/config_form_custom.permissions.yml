@@ -1,0 +1,4 @@
+administer config_form_custom configuration:
+  title: 'Administer config_form_custom configuration'
+  description: 'Optional description.'
+  restrict access: true

@@ -1,0 +1,25 @@
+# Here _controller maps Url to a function.
+config_form_custom.example:
+  path: '/config-form-custom/example'
+  defaults:
+    _title: 'Example'
+    _controller: '\Drupal\config_form_custom\Controller\ConfigFormCustomController::build'
+  requirements:
+    _permission: 'access content'
+
+config_form_custom.settings_form:
+  path: '/admin/config/system/config-form-custom'
+  defaults:
+    _title: 'Config Form Custom settings'
+    _form: 'Drupal\config_form_custom\Form\SettingsForm'
+  requirements:
+    _permission: 'administer config_form_custom configuration'
+
+# instead of controller here _form is used in defaults.
+config_form_custom.test_settings:
+  path: '/admin/config/system/test-settings-form'
+  defaults:
+    _title: 'Test settings'
+    _form: '\Drupal\config_form_custom\Form\TestSettingsForm'
+  requirements:
+    _permission: 'administer config_form_custom configuration'

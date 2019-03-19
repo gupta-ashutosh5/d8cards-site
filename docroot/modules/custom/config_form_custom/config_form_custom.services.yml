@@ -1,0 +1,6 @@
+services:
+  config_form_custom.event_subscriber:
+    class: Drupal\config_form_custom\EventSubscriber\ConfigFormCustomSubscriber
+    arguments: ['@messenger']
+    tags:
+      - { name: event_subscriber }
