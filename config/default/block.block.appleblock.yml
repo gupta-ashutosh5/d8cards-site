@@ -1,0 +1,25 @@
+uuid: 506c930e-dc36-403b-96ef-22d024e0d20a
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:stock_exchange_rate_card:a87a5309-839b-4e0f-a9ca-6162e5fbbca3'
+  module:
+    - block_content
+  theme:
+    - bartik
+id: appleblock
+theme: bartik
+region: content
+weight: 0
+provider: null
+plugin: 'block_content:a87a5309-839b-4e0f-a9ca-6162e5fbbca3'
+settings:
+  id: 'block_content:a87a5309-839b-4e0f-a9ca-6162e5fbbca3'
+  label: 'Apple block'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

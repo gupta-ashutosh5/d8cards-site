@@ -8,3 +8,31 @@
  * This file is no longer required in Drupal 8.
  * @see https://www.drupal.org/node/2217931
  */
+
+use Drupal\block_content\Entity\BlockContent;
+
+/**
+ * Implements hook_cron().
+ */
+function config_form_custom_cron() {
+
+  // Iterate over block instances.
+  // Get Block Instances.
+  $block_ids = \Drupal::entityQuery('block_content')->condition('type', 'stock_exchange_rate_card')->execute();
+
+  foreach ($block_ids as $value) {
+    $block = BlockContent::load($value);
+    $symbol = $block->get('field_symbol')->getValue();
+    $client = \Drupal::httpClient();
+    $request = $client->request('GET', 'http://dev.markitondemand.com/MODApis/Api/v2/Quote/json?symbol=' . $symbol['0']['value']);
+    $response = $request->getBody()->getContents();
+    $response = json_decode($response, TRUE);
+    if (isset($response['LastPrice'])) {
+      $block->set('field_last_price', $response['LastPrice']);
+    }
+    if (isset($response['Change'])) {
+      $block->set('field_changed', $response['Change']);
+    }
+    $block->save();
+  }
+}

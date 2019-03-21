@@ -1,0 +1,25 @@
+uuid: 93a2c777-ba0e-40db-a5d8-1e286f1a15b5
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:stock_exchange_rate_card:19e92a52-05f3-4438-805d-07487dbc834f'
+  module:
+    - block_content
+  theme:
+    - bartik
+id: boablock
+theme: bartik
+region: content
+weight: 0
+provider: null
+plugin: 'block_content:19e92a52-05f3-4438-805d-07487dbc834f'
+settings:
+  id: 'block_content:19e92a52-05f3-4438-805d-07487dbc834f'
+  label: 'BOA block'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

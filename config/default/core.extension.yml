@@ -5,6 +5,7 @@ module:
   breakpoint: 0
   ckeditor: 0
   config: 0
+  config_form_custom: 0
   consumers: 0
   contact: 0
   contact_storage: 0
@@ -35,6 +36,7 @@ module:
   image_widget_crop: 0
   inline_entity_form: 0
   jsonapi: 0
+  kint: 0
   layout_discovery: 0
   libraries: 0
   lightning_api: 0
