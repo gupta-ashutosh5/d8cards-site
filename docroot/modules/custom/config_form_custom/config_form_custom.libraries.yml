@@ -1,7 +1,5 @@
 # Custom module library for general purposes.
 config_form_custom:
-  js:
-    js/config-form-custom.js: {}
   css:
     component:
       css/config-form-custom.css: {}
