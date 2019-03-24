@@ -107,3 +107,5 @@ devel: 2.0.0
 seckit: 1.1.0
 entity_reference_revisions: 1.6.0
 paragraphs: 1.6.0
+config_form_custom: 0.0.0
+kint: 2.0.0

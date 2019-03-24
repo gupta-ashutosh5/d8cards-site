@@ -8,3 +8,27 @@
  * This file is no longer required in Drupal 8.
  * @see https://www.drupal.org/node/2217931
  */
+
+use Drupal\Core\Entity\EntityInterface;
+
+/**
+ * Implements hook_entity_insert().
+ */
+function config_form_custom_entity_insert(EntityInterface $entity) {
+  if ($entity->getEntityTypeId() !== 'node') {
+    return;
+  }
+  if ($entity->isPublished()) {
+    return;
+  }
+
+  $queue_factory = \Drupal::service('queue');
+  $queue = $queue_factory->get('cron_node_publisher');
+
+  // Create an item object.
+  $item = new stdClass();
+  $item->nid = $entity->id();
+
+  // Create queue item.
+  $queue->createItem($item);
+}
