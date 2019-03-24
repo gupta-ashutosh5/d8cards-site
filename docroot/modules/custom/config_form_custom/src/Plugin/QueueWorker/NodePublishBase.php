@@ -6,7 +6,6 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Queue\QueueWorkerBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\node\Entity\Node;
 
 // Make Class.
 /**
@@ -36,7 +35,7 @@ class NodePublishBase extends QueueWorkerBase implements ContainerFactoryPluginI
    *   The entityTypeManager object.
    */
   public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entityTypeManager) {
-    parent::_construct($configuration, $plugin_id, $plugin_definition);
+    parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->entityTypeManager = $entityTypeManager;
   }
 
@@ -65,19 +64,12 @@ class NodePublishBase extends QueueWorkerBase implements ContainerFactoryPluginI
    */
   public function processItem($data) {
     // TODO: Implement processItem() method.
-    // $node_storage = $this->entityTypeManager->getStorage('node').
-    $node = Node::load($data->nid);
+    $node_storage = $this->entityTypeManager->getStorage('node');
+    $node = $node_storage->load($data->nid);
     \Drupal::logger('connfig_form_custom')->info($node->isPublished());
 
-    $node->setPublished(TRUE);
-
     \Drupal::logger('connfig_form_custom')->info('After published @node', ['@node' => $node->isPublished()]);
-    $node->save();
-    // exit.
-    // if($node instanceof NodeInterface) {.
-    // return $this->publishNode($node); .
-    // }.
-    return 1;
+    return $this->publishNode($node);
   }
 
 }
